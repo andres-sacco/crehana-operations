@@ -24,11 +24,23 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Libraries-->
+        <junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
+
         <!-- Maven plugins -->
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter-engine.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
