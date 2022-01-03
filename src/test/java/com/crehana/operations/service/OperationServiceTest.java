@@ -1,6 +1,7 @@
 package com.crehana.operations.service;
 
 import com.crehana.operations.dto.OperationDTO;
+import com.crehana.operations.exception.CrehanaException;
 import com.crehana.operations.validator.OperationValidator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,7 +54,7 @@ public class OperationServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideParameters")
-    @DisplayName("Should return the correct sum of two numbers")
+    @DisplayName("Should return the correct sum of two numbers with different parameters")
     public void should_return_sum_two_numbers(double numberOne, double numberTwo) {
 
         //when
@@ -65,6 +66,26 @@ public class OperationServiceTest {
 
         //then
         Assertions.assertEquals(2d, result.getResult());
+    }
+
+    @Test
+    @DisplayName("Should return an exception when the parameters are wrong")
+    public void should_return_exception_when_parameters_wrong() {
+
+        //when
+        OperationValidator validator = new OperationValidator();
+        OperationService service = new OperationService(validator);
+
+        Double numberOne = null;
+        Double numberTwo = 1d;
+
+        //given
+        Exception exception = Assertions.assertThrows(CrehanaException.class, () -> {
+            service.sum(numberOne, numberTwo);
+        });
+
+        //then
+        Assertions.assertEquals("Operation contains something wrong", exception.getMessage());
     }
 
 
@@ -85,6 +106,7 @@ public class OperationServiceTest {
         //then
         Assertions.assertEquals(0d, result.getResult());
     }
+
 
     private static Stream<Arguments> provideParameters() {
         return Stream.of(
