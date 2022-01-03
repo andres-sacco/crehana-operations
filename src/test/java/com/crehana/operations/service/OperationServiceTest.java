@@ -38,14 +38,14 @@ public class OperationServiceTest {
     @DisplayName("Should return the correct sum of two numbers")
     public void should_return_sum_two_numbers() {
 
-        //when
+        //given
         OperationValidator validator = new OperationValidator();
         OperationService service = new OperationService(validator);
 
         Double numberOne = 1d;
         Double numberTwo = 1d;
 
-        //given
+        //when
         OperationDTO result = service.sum(numberOne, numberTwo);
 
         //then
@@ -57,11 +57,11 @@ public class OperationServiceTest {
     @DisplayName("Should return the correct sum of two numbers with different parameters")
     public void should_return_sum_two_numbers(double numberOne, double numberTwo) {
 
-        //when
+        //given
         OperationValidator validator = new OperationValidator();
         OperationService service = new OperationService(validator);
 
-        //given
+        //when
         OperationDTO result = service.sum(numberOne, numberTwo);
 
         //then
@@ -72,14 +72,14 @@ public class OperationServiceTest {
     @DisplayName("Should return an exception when the parameters are wrong")
     public void should_return_exception_when_parameters_wrong() {
 
-        //when
+        //given
         OperationValidator validator = new OperationValidator();
         OperationService service = new OperationService(validator);
 
         Double numberOne = null;
         Double numberTwo = 1d;
 
-        //given
+        //when
         Exception exception = Assertions.assertThrows(CrehanaException.class, () -> {
             service.sum(numberOne, numberTwo);
         });
@@ -93,14 +93,14 @@ public class OperationServiceTest {
     @DisplayName("Should return the correct subtract of two numbers")
     public void should_return_subtract_two_numbers() {
 
-        //when
+        //given
         OperationValidator validator = new OperationValidator();
         OperationService service = new OperationService(validator);
 
         Double numberOne = 1d;
         Double numberTwo = 1d;
 
-        //given
+        //when
         OperationDTO result = service.subtract(numberOne, numberTwo);
 
         //then
