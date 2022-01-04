@@ -1,5 +1,5 @@
 package com.crehana.operations.enums;
 
 public enum OperationType {
-    SUM, SUBTRACT, MULTIPLICATION, DIVISION;
+    SUM, SUBTRACT, MULTIPLICATION, DIVISION, MODULE;
 }

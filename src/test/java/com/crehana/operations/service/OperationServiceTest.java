@@ -155,6 +155,27 @@ public class OperationServiceTest {
     }
 
 
+    @Test
+    @DisplayName("Should return the correct module of two numbers")
+    public void should_return_module_two_numbers() {
+        //given
+        OperationValidator validator = new OperationValidator();
+        OperationService service = new OperationService(validator);
+
+        Double numberOne = 2d;
+        Double numberTwo = 1d;
+
+        //when
+        OperationDTO result = service.module(numberOne, numberTwo);
+
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(0d, result.getResult()),
+                () -> Assertions.assertEquals(2d, result.getNumberOne()),
+                () -> Assertions.assertEquals(1d, result.getNumberTwo())
+        );
+    }
+
     private static Stream<Arguments> provideParameters() {
         return Stream.of(
                 Arguments.of(1, 1),

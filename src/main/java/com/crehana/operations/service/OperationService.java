@@ -62,4 +62,15 @@ public class OperationService {
             throw new CrehanaException("Operation contains something wrong");
         }
     }
+
+    public OperationDTO module(Double numberOne, Double numberTwo) {
+        OperationDTO operation = new OperationDTO(numberOne, numberTwo, OperationType.MODULE);
+
+        validOperation(operation);
+
+        double result = operation.getNumberOne() % operation.getNumberTwo();
+        operation.setResult(result);
+
+        return operation;
+    }
 }
