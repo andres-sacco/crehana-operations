@@ -7,11 +7,14 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mockito;
 
 import java.util.stream.Stream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OperationServiceTest {
+
+    private OperationValidator validator;
 
     @BeforeAll
     void pre_execution_all() {
@@ -21,6 +24,7 @@ public class OperationServiceTest {
     @BeforeEach
     void pre_execution() {
         System.out.println("BeforeEach");
+        validator = Mockito.mock(OperationValidator.class);
     }
 
     @AfterEach
@@ -127,6 +131,27 @@ public class OperationServiceTest {
                 () -> Assertions.assertEquals(1d, result.getNumberOne()),
                 () -> Assertions.assertEquals(1d, result.getNumberTwo())
         );
+    }
+
+    @Test
+    @DisplayName("Subtract should return an exception when the parameters are wrong")
+    public void subtract_should_return_exception_when_parameters_wrong() {
+
+        //given
+        OperationService service = new OperationService(validator);
+
+        Double numberOne = null;
+        Double numberTwo = 1d;
+
+        Mockito.when(validator.isValid(Mockito.any())).thenReturn(Boolean.FALSE);
+
+        //when
+        Exception exception = Assertions.assertThrows(CrehanaException.class, () -> {
+            service.subtract(numberOne, numberTwo);
+        });
+
+        //then
+        Assertions.assertEquals("Operation contains something wrong", exception.getMessage());
     }
 
 
