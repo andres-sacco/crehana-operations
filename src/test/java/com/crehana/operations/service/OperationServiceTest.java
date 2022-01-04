@@ -107,6 +107,28 @@ public class OperationServiceTest {
         Assertions.assertEquals(0d, result.getResult());
     }
 
+    @Test
+    @DisplayName("Should return the correct multiplication of two numbers")
+    public void should_return_multiplication_two_numbers() {
+
+        //given
+        OperationValidator validator = new OperationValidator();
+        OperationService service = new OperationService(validator);
+
+        Double numberOne = 1d;
+        Double numberTwo = 1d;
+
+        //when
+        OperationDTO result = service.multiplication(numberOne, numberTwo);
+
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(1d, result.getResult()),
+                () -> Assertions.assertEquals(1d, result.getNumberOne()),
+                () -> Assertions.assertEquals(1d, result.getNumberTwo())
+        );
+    }
+
 
     private static Stream<Arguments> provideParameters() {
         return Stream.of(
