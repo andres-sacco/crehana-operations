@@ -39,24 +39,12 @@
         <sonar.organization>adschosen-github</sonar.organization>
         <sonar.projectKey>andres-sacco_crehana-operations</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
-        <sonar.exclusions>
-            **/dto/**,
-            **/enums/**
-        </sonar.exclusions>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
             <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
