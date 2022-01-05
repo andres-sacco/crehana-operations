@@ -3,11 +3,6 @@ package com.crehana.operations.service;
 import com.crehana.operations.dto.OperationDTO;
 import com.crehana.operations.validator.OperationValidator;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OperationServiceTest {
@@ -51,23 +46,6 @@ public class OperationServiceTest {
         Assertions.assertEquals(2d, result.getResult());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideParameters")
-    @DisplayName("Should return the correct sum of two numbers")
-    public void should_return_sum_two_numbers(double numberOne, double numberTwo) {
-
-        //when
-        OperationValidator validator = new OperationValidator();
-        OperationService service = new OperationService(validator);
-
-        //given
-        OperationDTO result = service.sum(numberOne, numberTwo);
-
-        //then
-        Assertions.assertEquals(2d, result.getResult());
-    }
-
-
     @Test
     @DisplayName("Should return the correct subtract of two numbers")
     public void should_return_subtract_two_numbers() {
@@ -84,12 +62,5 @@ public class OperationServiceTest {
 
         //then
         Assertions.assertEquals(0d, result.getResult());
-    }
-
-    private static Stream<Arguments> provideParameters() {
-        return Stream.of(
-                Arguments.of(1, 1),
-                Arguments.of(0, 2)
-        );
     }
 }
